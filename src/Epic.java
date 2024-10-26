@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Epic extends  Task{
+public class Epic extends Task {
 
     private ArrayList<Subtask> subtaskList = new ArrayList<>();
 
@@ -14,11 +14,11 @@ public class Epic extends  Task{
         this.subtaskList = subtaskList;
     }
 
-    public void addSubtask(Subtask subtask){
+    public void addSubtask(Subtask subtask) {
         subtaskList.add(subtask);
     }
 
-    public void clearSubtask(Subtask subtask){
+    public void clearSubtask(Subtask subtask) {
         subtaskList.clear();
     }
 
@@ -30,5 +30,14 @@ public class Epic extends  Task{
         this.subtaskList = subtaskList;
     }
 
-
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "name= " + getName() + '\'' +
+                ", description = " + getDescription() + '\'' +
+                ", id=" + getId() +
+                ", subtaskList.size = " + subtaskList.size() +
+                ", status = " + getStatus() +
+                '}';
+    }
 }
