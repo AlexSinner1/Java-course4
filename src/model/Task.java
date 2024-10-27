@@ -1,12 +1,11 @@
 package model;
-
 import java.util.Objects;
+import enums.Status;
 
 public class Task {
-
-    private String name;
-    private String description;
-    private int id;
+    protected String name;
+    protected String description;
+    protected int id;
     protected Status status;
 
 
@@ -60,7 +59,7 @@ public class Task {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Task task = (Task) object;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status;
+        return id == task.id;
     }
 
     @Override

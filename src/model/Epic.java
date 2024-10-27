@@ -2,8 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
-public class Epic extends Task {
+import enums.Status;
 
+
+public class Epic extends Task {
     private ArrayList<Subtask> subtaskList = new ArrayList<>();
 
     public Epic(String name, String description) {
@@ -33,11 +35,11 @@ public class Epic extends Task {
     @Override
     public String toString() {
         return "Epic{" +
-                "name= " + getName() + '\'' +
-                ", description = " + getDescription() + '\'' +
-                ", id=" + getId() +
+                "name= " + name + '\'' +
+                ", description = " + description + '\'' +
+                ", id=" + id +
                 ", subtaskList.size = " + subtaskList.size() +
-                ", status = " + getStatus() +
+                ", status = " + status +
                 '}';
     }
 }
