@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Objects;
 
 public class Task {
@@ -5,7 +7,7 @@ public class Task {
     private String name;
     private String description;
     private int id;
-    private Status status;
+    protected Status status;
 
 
     public Task(int id, String name, String description, Status status) {
