@@ -1,7 +1,7 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.*;
+
 import model.Task;
 import model.Epic;
 import model.Subtask;
@@ -43,7 +43,7 @@ public class TaskManager {
 
     public Task updateTask(Task task) {
         Integer taskID = task.getId();
-        if (taskID == null || !tasks.containsKey(taskID)) {
+        if (!tasks.containsKey(taskID)) {
             return null;
         }
         tasks.replace(taskID, task);
@@ -52,7 +52,7 @@ public class TaskManager {
 
     public Epic updateEpic(Epic epic) {
         Integer epicID = epic.getId();
-        if (epicID == null || !epics.containsKey(epicID)) {
+        if (!epics.containsKey(epicID)) {
             return null;
         }
 
@@ -78,7 +78,7 @@ public class TaskManager {
 
     public Subtask updateSubtask(Subtask subtask) {
         Integer subtaskID = subtask.getId();
-        if (subtaskID == null || !subtasks.containsKey(subtaskID)) {
+        if (!subtasks.containsKey(subtaskID)) {
             return null;
         }
         int epicID = subtask.getEpicID();
@@ -134,7 +134,7 @@ public class TaskManager {
     public void deleteSubtasks() {
         subtasks.clear();
         for (Epic epic : epics.values()) {
-            subtasks.clear();
+            epic.clearSubtask();
             epic.setStatus(Status.NEW);
         }
     }
@@ -159,7 +159,6 @@ public class TaskManager {
         Epic epic = epics.get(epicID);
         ArrayList<Subtask> subtaskList = epic.getSubtaskList();
         subtaskList.remove(subtask);
-        epic.setSubtaskList(subtaskList);
         updateEpicStatus(epic);
     }
 
