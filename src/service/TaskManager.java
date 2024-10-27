@@ -89,7 +89,7 @@ public class TaskManager {
         ArrayList<Subtask> subtaskList = epic.getSubtaskList();
         subtaskList.remove(oldSubtask);
         subtaskList.add(subtask);
-        epic.setSubtaskList(subtaskList);
+        epic.updateSubtask(subtask);
         updateEpicStatus(epic);
         return subtask;
     }
@@ -118,7 +118,8 @@ public class TaskManager {
         return new ArrayList<>(subtasks.values());
     }
 
-    public ArrayList<Subtask> getEpicSubtasks(Epic epic) {
+    public ArrayList<Subtask> getEpicSubtasks(Epic epicId) {
+        if ()
         return epic.getSubtaskList();
     }
 

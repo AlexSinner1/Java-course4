@@ -23,11 +23,11 @@ public class Subtask extends Task{
     @Override
     public String toString() {
         return "Subtask{" +
-                "name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", id=" + getId() +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", id=" + id +
                 ", epicID=" + epicID +
-                ", status=" + getStatus() +
+                ", status=" + status +
                 '}';
     }
 }
