@@ -21,8 +21,9 @@ public class TaskManager {
     }
 
     public Task addTask(Task task) {
-        task.setId(getNextID());
-        tasks.put(task.getId(), task);
+        int taskId = getNextID();
+        task.setId(taskId);
+        tasks.put(taskId, task);
         return task;
     }
 
@@ -33,7 +34,8 @@ public class TaskManager {
     }
 
     public Subtask addSubtask(Subtask subtask) {
-        subtask.setId(getNextID());
+        int newSubtaskId = getNextID();
+        subtask.setId(newSubtaskId);
         Epic epic = epics.get(subtask.getEpicID());
         epic.addSubtask(subtask);
         subtasks.put(subtask.getId(), subtask);
@@ -119,8 +121,9 @@ public class TaskManager {
     }
 
     public ArrayList<Subtask> getEpicSubtasks(Epic epicId) {
-        if ()
-        return epic.getSubtaskList();
+        ArrayList<Subtask> subtaskIds = epics.get(epicId).getSubtaskList();
+        ArrayList<Subtask> subtasksByOneEpic = new ArrayList<>();
+        return subtasksByOneEpic;
     }
 
     public void deleteTasks() {
@@ -145,10 +148,9 @@ public class TaskManager {
     }
 
     public void deleteEpicByID(int id) {
-        ArrayList<Subtask> epicSubtasks = epics.get(id).getSubtaskList();
-        epics.remove(id);
-        for (Subtask subtask : epicSubtasks) {
-            subtasks.remove(subtask.getId());
+        ArrayList<Subtask> subtaskIds = epics.get(id).getSubtaskList();
+        for (Subtask subtask : subtaskIds) {
+            epics.remove(id);
         }
     }
 
@@ -165,21 +167,21 @@ public class TaskManager {
 
 
     private void updateEpicStatus(Epic epic) {
-        int allIsDoneCount = 0;
-        int allIsInNewCount = 0;
+        int counterNEW = 0;
+        int counterDONE = 0;
         ArrayList<Subtask> list = epic.getSubtaskList();
 
         for (Subtask subtask : list) {
             if (subtask.getStatus() == Status.DONE) {
-                allIsDoneCount++;
+                counterDONE++;
             }
             if (subtask.getStatus() == Status.NEW) {
-                allIsInNewCount++;
+                counterNEW++;
             }
         }
-        if (allIsDoneCount == list.size()) {
+        if (counterDONE == list.size()) {
             epic.setStatus(Status.DONE);
-        } else if (allIsInNewCount == list.size()) {
+        } else if (counterNEW != list.size()) {
             epic.setStatus(Status.NEW);
         } else {
             epic.setStatus(Status.IN_PROGRESS);
